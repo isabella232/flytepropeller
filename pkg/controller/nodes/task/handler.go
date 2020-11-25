@@ -535,6 +535,12 @@ func (t Handler) Handle(ctx context.Context, nCtx handler.NodeExecutionContext) 
 		// Lets check if this value in cache is less than or equal to one in the store
 		if barrierTick <= ts.BarrierClockTick {
 			var err error
+			logger.Infof(ctx, "invokePlugin tCtx %v", tCtx)
+			logger.Infof(ctx, "invokePlugin GetRawOutputDataConfig %v", tCtx.ExecutionContext().GetRawOutputDataConfig())
+			logger.Infof(ctx, "invokePlugin GetOutputPath %v", tCtx.ow.GetOutputPath())
+			logger.Infof(ctx, "invokePlugin GetOutputPrefixPath %v", tCtx.ow.GetOutputPrefixPath())
+			logger.Infof(ctx, "invokePlugin GetRawOutputPrefix %v", tCtx.ow.GetRawOutputPrefix())
+
 			pluginTrns, err = t.invokePlugin(ctx, p, tCtx, ts)
 			if err != nil {
 				return handler.UnknownTransition, errors.Wrapf(errors.RuntimeExecutionError, nCtx.NodeID(), err, "failed during plugin execution")

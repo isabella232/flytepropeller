@@ -564,6 +564,9 @@ func (in *NodeStatus) GetNodeExecutionStatus(ctx context.Context, id NodeID) Exe
 		return n
 	}
 
+	logger.Infof(ctx, "SetDataDir %v", dataDir)
+	logger.Infof(ctx, "SetOutputDir %v", outputDir)
+
 	newNodeStatus.SetDataDir(dataDir)
 	newNodeStatus.SetOutputDir(outputDir)
 	newNodeStatus.DataReferenceConstructor = in.DataReferenceConstructor
