@@ -535,7 +535,17 @@ func (t Handler) Handle(ctx context.Context, nCtx handler.NodeExecutionContext) 
 		// Lets check if this value in cache is less than or equal to one in the store
 		if barrierTick <= ts.BarrierClockTick {
 			var err error
-			logger.Infof(ctx, "invokePlugin tCtx %v", tCtx)
+			logger.Infof(ctx, "invokePlugin nodeID %v", tCtx.NodeExecutionContext.NodeID())
+			logger.Infof(ctx, "invokePlugin GetParentNodeID %v", tCtx.NodeExecutionContext.NodeStatus().GetParentNodeID())
+			logger.Infof(ctx, "invokePlugin NodeStatus %v", tCtx.NodeExecutionContext.NodeStatus())
+			logger.Infof(ctx, "invokePlugin NodeExecutionContext RawOutputPrefix %v", tCtx.NodeExecutionContext.RawOutputPrefix())
+			logger.Infof(ctx, "invokePlugin RawOutputPrefix %v", tCtx.RawOutputPrefix().String())
+
+			logger.Infof(ctx, "invokePlugin InputReader().GetInputPath() %v", tCtx.InputReader().GetInputPath().String())
+			logger.Infof(ctx, "invokePlugin OutputWriter().GetOutputPrefixPath() %v", tCtx.OutputWriter().GetOutputPrefixPath().String())
+			logger.Infof(ctx, "invokePlugin InputReader().GetInputPrefixPath() %v", tCtx.InputReader().GetInputPrefixPath().String())
+			logger.Infof(ctx, "invokePlugin OutputWriter().GetRawOutputPrefix() %v", tCtx.OutputWriter().GetRawOutputPrefix().String())
+
 			logger.Infof(ctx, "invokePlugin GetRawOutputDataConfig %v", tCtx.ExecutionContext().GetRawOutputDataConfig())
 			logger.Infof(ctx, "invokePlugin GetOutputPath %v", tCtx.ow.GetOutputPath())
 			logger.Infof(ctx, "invokePlugin GetOutputPrefixPath %v", tCtx.ow.GetOutputPrefixPath())
